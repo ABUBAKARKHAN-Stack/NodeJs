@@ -1,0 +1,19 @@
+{
+  "name": "cli_todo",
+  "version": "1.0.0",
+  "description": "A CLI Based Todo APP ",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "TODO",
+    "CLI"
+  ],
+  "author": "Abubakar Aija",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  }
+}
