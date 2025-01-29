@@ -1,0 +1,20 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "keywords": [
+    "weather",
+    "app"
+  ],
+  "author": "Abubakar Aijaz",
+  "license": "ISC",
+  "description": "A CLI Based Weather App using Node Express ",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "dotenv": "^16.4.7"
+  }
+}
