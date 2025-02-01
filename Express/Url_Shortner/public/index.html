@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 📦 Main Container -->
+    <div class="container">
+        <h1>🔗 URL Shortener</h1>
+
+        <!-- 📝 URL Shortening Form -->
+        <form id="shortenForm" class="form-container">
+            <input type="url" name="url" id="url" placeholder="Paste URL..." required>
+            <input type="text" name="shortendCode" id="shortendCode" placeholder="Custom Code (Optional)">
+            <button type="submit">Shorten</button>
+        </form>
+
+        <!-- 🔗 Shortened URLs Section -->
+        <div class="shortened-urls">
+            <h3>Shortened URLs</h3>
+            <ul id="urlList"></ul>
+        </div>
+    </div>
+
+    <script>
+
+        // 📌 DOM Elements
+        const urlList = document.getElementById("urlList");
+
+        // 📝 Handle Form Submission
+        document.getElementById("shortenForm").addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const url = formData.get("url");
+            const shortendCode = formData.get("shortendCode");
+
+            try {
+                const res = await fetch("/shortend/url", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url, shortendCode }),
+                });
+
+                if (res.ok) {
+                    event.target.reset();
+                    getAllLinks();
+                }
+            } catch (error) {
+                console.error("❌ Error:", error);
+            }
+        });
+
+        // 🔗 Fetch & Display Shortened Links
+        async function getAllLinks() {
+            try {
+                const res = await fetch("/shortend/get-links");
+                const data = await res.json();
+
+                urlList.innerHTML = ""; // Clear old list
+
+                Object.entries(data).forEach(([key, value]) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                <div class="shortened-url-card">
+                    <div>
+                        <strong>Original Link:</strong> 
+                        <a href="${value}" target="_blank">${value}</a>
+                    </div>
+                    <div>
+                        <strong>Shortened Link:</strong> 
+                        <a href="/shortend/${key}" target="_blank">
+                            ${window.location.origin}/shortend/${key}
+                        </a>
+                    </div>
+                    <div class="button-group">
+                        <button class="copy-btn" onclick="onCopyUrl('${window.location.origin}/shortend/${key}')">📋 Copy</button>
+                        <button class="delete-btn" onclick="onDeleteLink('${key}')">❌ Delete</button>
+                    </div>
+                </div>`;
+                    urlList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("❌ Error fetching links:", error);
+            }
+        }
+
+        // 📋 Copy URL to Clipboard
+        function onCopyUrl(url) {
+            navigator.clipboard.writeText(url)
+                .then(() => alert(`✅ Copied: ${url}`))
+                .catch((err) => console.error("❌ Copy failed:", err));
+        }
+
+        // ❌ Delete Shortened Link
+        async function onDeleteLink(short) {
+            try {
+                const res = await fetch(`/shortend/delete/${short}`, { method: "DELETE" });
+                if (res.ok) getAllLinks();
+            } catch (error) {
+                console.error("❌ Error deleting link:", error);
+            }
+        }
+
+        // 🔄 Load URLs on Page Load
+        getAllLinks();
+
+    </script>
+</body>
+
+</html>
