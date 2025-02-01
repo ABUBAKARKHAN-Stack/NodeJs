@@ -15,7 +15,7 @@ import dotenv from "dotenv"; // @ Dotenv for environment variables
 dotenv.config(); //? 🔐 Load environment variables from .env file
 
 //? 🔑 API Credentials
-const API_KEY = process.env.WEATHER_API_KEY || "you-api-key"; // @ Store API key securely
+const API_KEY = process.env.WEATHER_API_KEY || "cb43c6e15818e1be9ac7ed2a9b8706f8"; // @ Store API key securely
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather"; // @ API base URL
 
 //? 📌 Creating readline interface for user input
@@ -56,8 +56,8 @@ async function getWeather(city) {
         console.log(chalk.green.bold.underline(`\n📍 Weather Information for ${info.city}`));
         console.log(chalk.blueBright(`🌡️ Temperature: ${info.tempInC.toFixed(2)}°C`));
         console.log(chalk.blueBright(`💧 Humidity: ${info.humidity}%`));
-        console.log(chalk.blueBright(`🌦️ Description: ${info.desc}`));
-        console.log(chalk.blueBright(`🌬️ Wind Speed: ${info.wind} m/s`));
+        console.log(chalk.blueBright(`🌦️- Description: ${info.desc}`));
+        console.log(chalk.blueBright(`🌬️- Wind Speed: ${info.wind} m/s`));
 
     } catch (error) {
         console.log(chalk.red("❌ Error fetching data. Please check your internet connection.")); // @ Handle network errors
@@ -65,6 +65,6 @@ async function getWeather(city) {
 }
 
 //? 🎯 Get city name from user input
-const city = await rl.question(chalk.yellow("🏙️ Enter City Name To Get Weather: "));
+const city = await rl.question(chalk.yellow("🏙️- Enter City Name To Get Weather: "));
 await getWeather(city.trim().toLowerCase()); // @ Trim input for safety
 rl.close(); // @ Close readline after use

@@ -1,0 +1,150 @@
+/* 🌎 Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+/* 🏠 Page Background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(circle, #1a1a1d, #121212);
+    color: #ffffff;
+    padding: 20px;
+}
+
+/* 📦 Main Container */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: #222;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+/* 🔗 Heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+/* 📝 Form Styling */
+.form-container {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #333;
+    color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4facfe;
+}
+
+input::placeholder {
+    color: #777;
+}
+
+button {
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #ff7eb3, #ff758c);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 📑 Shortened URLs Section */
+.shortened-urls {
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* 🔗 Shortened URL Card */
+.shortened-url-card {
+    background: #333;
+    padding: 15px;
+    border-radius: 8px;
+    color: #f4f4f4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+a {
+    color: #4facfe;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 🛠️ Button Group */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.copy-btn {
+    background: linear-gradient(90deg, #4caf50, #81c784);
+}
+
+.delete-btn {
+    background: linear-gradient(90deg, #f44336, #e57373);
+
+}
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}
