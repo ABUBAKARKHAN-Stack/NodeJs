@@ -49,7 +49,11 @@ const addShortenedLink = async (req, res) => {
  */
 const getLinks = async (req, res) => {
     const linksData = await loadLinks();
-    return res.status(200).json(linksData);
+  //  return res.status(200).json(linksData); //* 👈🏻 This was before
+  res.render("index" , {
+    links: linksData
+  }); // * 👈🏻 This is the new one
+
 };
 
 /**

@@ -18,7 +18,7 @@ route.post("/url", addShortenedLink);
 ? 📥 GET: Retrieve all stored links 
 ! Returns an object containing all saved URLs
 */
-route.get("/get-links", getLinks);
+route.get("/", getLinks);
 
 /* 
 ? 🔗 GET: Redirect to original URL using shortcode

@@ -15,7 +15,11 @@
 import express, { json, urlencoded, static as static_ } from 'express';
 import "dotenv/config"; // ? Load environment variables from .env file
 
+
 const app = express(); // * Initialize Express application
+
+
+app.set('view engine', 'ejs');
 
 // =============================
 // 🌐 Serve Static Files
@@ -46,7 +50,7 @@ app.use(urlencoded({ extended: true }));
  * - Mounted under `/shortend` (e.g., `/shortend/create`, `/shortend/:code`).
  */
 import urlRoute from "./routes/url.routes.js";
-app.use("/shortend", urlRoute);
+app.use(urlRoute);
 
 // =============================
 // 🚀 Start Server
