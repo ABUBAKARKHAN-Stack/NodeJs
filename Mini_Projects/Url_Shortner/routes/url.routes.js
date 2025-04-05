@@ -10,7 +10,7 @@ const Data_Path = path.join("data", "link.json");
 ?📝 POST: Create a shortened URL
 */
 route.post("/url", async (req, res) => {
-    const { url, shortendCode } = req.body;
+    let { url, shortendCode } = req.body;
     console.log(url, shortendCode);
 
     //! ❌ Validate Input: Ensure URL is provided
@@ -20,6 +20,12 @@ route.post("/url", async (req, res) => {
             error: '❌ URL is required'
         });
     }
+
+    //* Remove White Spaces
+    if (shortendCode.trim().includes(" ")) {
+       shortendCode = shortendCode.replaceAll(/\s+/g, "-")
+    }
+    
 
     //* 🔄 Load existing links
     const links = await fs.readFile(Data_Path, 'utf8');

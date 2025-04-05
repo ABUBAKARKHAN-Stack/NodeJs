@@ -27,8 +27,8 @@ import urlRoute from "./routes/url.routes.js"
 app.use("/shortend", urlRoute);
 
 /* 
-*🟢 SERVER: Listening on port 3000 
+*🟢 SERVER: Listening on port 3001
 */
-app.listen(3000, () => {
-    console.log('✅ Server is running on port 3000');
+app.listen(3001, () => {
+    console.log('✅ Server is running on port 3001');
 });
